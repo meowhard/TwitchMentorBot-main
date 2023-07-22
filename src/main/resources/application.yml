@@ -1,0 +1,78 @@
+twitch:
+  channelName: ${CHANNEL_NAME:yadren_matron}
+  auth:
+    botClientId: ${BOT_CLIENT_ID}
+    botSecret: ${BOT_SECRET}
+    moderationSecret: ${MODERATION_SECRET}
+    moderationClientId: ${MODERATION_CLIENT_ID}
+  pixel-wars:
+    pixelWarsClientId: ${PIXEL_WARS_CLIENT_ID}
+    pixelWarsSecret: ${PIXEL_WARS_SECRET}
+    pixelWarsRedirectUrl: ${PIXEL_WARS_REDIRECT_URL:http://localhost:8080/pixel/editor}
+  security-config:
+    adminName: ${ADMIN}
+    adminPassword: ${ADMIN_PASSWORD}
+
+
+  rewardTitle:
+    onePixelReward: 1 пиксель !pw
+    fivePixelReward: 5 пикселей !pw
+    twentyFivePixelReward: 25 пикселей !pw
+
+telegram:
+  mentorUsername: Marandyuk_Anatolii
+  reviewBotHost: https://overridetech.ru/review-bot
+
+spring:
+  datasource:
+    password: ${POSTGRES_PASSWORD}
+    username: ${POSTGRES_USER}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/${POSTGRES_DB:twitch_bot}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+        show_sql: false
+        format_sql: true
+        use_sql_comments: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+
+pixelWars:
+  width: 160
+  height: 95
+
+chatGPT:
+  API_KEY_Chat_GPT: Bearer ${API_KEY_Chat_GPT}
+  URL:
+    client: https://api.openai.com
+    POST: /v1/chat/completions
+
+donationAlerts:
+  auth:
+    clientId: ${DONATION_ALERTS_CLIENT_ID}
+    secret: ${DONATION_ALERTS_SECRET}
+    grantType: refresh_token
+    url: https://www.donationalerts.com
+    post: /oauth/token
+  donations:
+    url: https://www.donationalerts.com
+    post: /api/v1/alerts/donations?last
+    indexConvertingKindness: 10
+
+schedule:
+  periodEvaluationKindness: 90000
+  periodValidateConnection: PT01H
+  periodExecutedCommandsByTime: 60000
+  periodSendExecutedCommandsByTime: 120000
+  periodAddKindnessForDonat: 60000
+  allowedTimeIntervalInMinutes: 20
